@@ -23,10 +23,17 @@ namespace LightsOut.Controllers
         private readonly Random _random;
 
         /// <summary>
+        /// The timer for the win screen
+        /// </summary>
+        private readonly Timer _winTimer;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LightsOutController"/> class
         /// </summary>
-        public LightsOutController()
+        /// <param name="timer">The win screen timer</param>
+        public LightsOutController(Timer timer)
         {
+            _winTimer = timer;
             _grid = new List<Light>();
             _random = new Random();
         }
@@ -36,6 +43,7 @@ namespace LightsOut.Controllers
         /// </summary>
         public void InitialiseGame()
         {
+            _winTimer.Enabled = false;
             _grid.ForEach(g => g.SwitchOff());
             for (int i = 0; i < 15; i++)
             {
@@ -101,6 +109,12 @@ namespace LightsOut.Controllers
         {
             MessageBox.Show("You win 👉😉👉");
             InitialiseGame();
+        }
+
+
+        private void DisplayWin()
+        {
+
         }
     }
 }

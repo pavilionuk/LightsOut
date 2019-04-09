@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnLight1 = new System.Windows.Forms.Button();
             this.btnLight2 = new System.Windows.Forms.Button();
             this.btnLight3 = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@
             this.btnLight24 = new System.Windows.Forms.Button();
             this.btnLight25 = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.tmrWinScreen = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnLight1
@@ -358,6 +360,7 @@
         private System.Windows.Forms.Button btnLight24;
         private System.Windows.Forms.Button btnLight25;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Timer tmrWinScreen;
     }
 }
 

@@ -14,7 +14,7 @@ namespace LightsOut
 
         public frmLightsOut()
         {
-            _controller = new LightsOutController();
+            _controller = new LightsOutController(tmrWinScreen);
             InitializeComponent();
             InitialiseGrid();
             _controller.InitialiseGame();
