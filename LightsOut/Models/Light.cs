@@ -57,7 +57,10 @@ namespace LightsOut.Models
         /// </summary>
         public void SwitchOn()
         {
-            _btnLight.Text = "@";
+            if (_btnLight != null)
+            {
+                _btnLight.Text = "@";
+            }
             _isOn = true;
         }
 
@@ -66,7 +69,10 @@ namespace LightsOut.Models
         /// </summary>
         public void SwitchOff()
         {
-            _btnLight.Text = string.Empty;
+            if (_btnLight != null)
+            {
+                _btnLight.Text = string.Empty;
+            }
             _isOn = false;
         }
 
@@ -77,12 +83,18 @@ namespace LightsOut.Models
         {
             if (_isOn)
             {
-                _btnLight.Text = string.Empty;
+                if (_btnLight != null)
+                {
+                    _btnLight.Text = string.Empty;
+                }
                 _isOn = !_isOn;
             }
             else
             {
-                _btnLight.Text = "@";
+                if (_btnLight != null)
+                {
+                    _btnLight.Text = "@";
+                }
                 _isOn = !_isOn;
             }
         }
