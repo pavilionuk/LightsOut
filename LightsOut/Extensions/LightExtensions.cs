@@ -16,7 +16,9 @@ namespace LightsOut.Extensions
         /// <returns>A <see cref="List{Light}"/> adjacent to this</returns>
         public static List<Light> GetAdjacent(this List<Light> lights, Light light)
         {
+            lights.EnsureNotNull(nameof(lights));
             light.EnsureNotNull(nameof(light));
+
             var returnValue = new List<Light>();
 
             if (light.X > 0)
