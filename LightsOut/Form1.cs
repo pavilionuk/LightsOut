@@ -14,8 +14,8 @@ namespace LightsOut
 
         public frmLightsOut()
         {
-            _controller = new LightsOutController(tmrWinScreen);
             InitializeComponent();
+            _controller = new LightsOutController(tmrWinScreen);
             InitialiseGrid();
             _controller.InitialiseGame();
         }
@@ -181,6 +181,18 @@ namespace LightsOut
         private void btnLight5_Click(object sender, EventArgs e)
         {
             _controller.LightClick(4, 4);
+        }
+
+        private void tmrWinScreen_Tick(object sender, EventArgs e)
+        {
+            if (btnLight21.Text == "@")
+            {
+                _controller.ClearScreen();
+            }
+            else
+            {
+                _controller.DisplayWin();
+            }
         }
     }
 }

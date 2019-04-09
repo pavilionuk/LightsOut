@@ -25,7 +25,7 @@ namespace LightsOut.Controllers
         /// <summary>
         /// The timer for the win screen
         /// </summary>
-        private readonly Timer _winTimer;
+        private Timer _winTimer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LightsOutController"/> class
@@ -44,7 +44,7 @@ namespace LightsOut.Controllers
         public void InitialiseGame()
         {
             _winTimer.Enabled = false;
-            _grid.ForEach(g => g.SwitchOff());
+            _grid.ClearScreen();
             for (int i = 0; i < 15; i++)
             {
                 var lightToTurnOn = _grid
@@ -76,19 +76,32 @@ namespace LightsOut.Controllers
         public void LightClick(int x, int y)
         {
             var lightClicked = _grid.GetByCoord(x, y);
-            if (lightClicked.IsOn())
+            var lightsToToggle = new List<Light>();
+            lightsToToggle.Add(lightClicked);
+            lightsToToggle.AddRange(_grid.GetAdjacent(lightClicked));
+
+            foreach (var light in lightsToToggle)
             {
-                var lightsToToggle = new List<Light>();
-                lightsToToggle.Add(lightClicked);
-                lightsToToggle.AddRange(_grid.GetAdjacent(lightClicked));
-
-                foreach (var light in lightsToToggle)
-                {
-                    light.Toggle();
-                }
-
-                CheckGrid();
+                light.Toggle();
             }
+
+            CheckGrid();
+        }
+
+        /// <summary>
+        /// Displays the win screen
+        /// </summary>
+        public void DisplayWin()
+        {
+            _grid.DisplayWinScreen();
+        }
+
+        /// <summary>
+        /// Starts the win process
+        /// </summary>
+        public void ClearScreen()
+        {
+            _grid.ClearScreen();
         }
 
         /// <summary>
@@ -98,23 +111,8 @@ namespace LightsOut.Controllers
         {
             if (_grid.All(l => l.IsOn() == false))
             {
-                Win();
+                _winTimer.Enabled = true;
             }
-        }
-
-        /// <summary>
-        /// Starts the win process
-        /// </summary>
-        private void Win()
-        {
-            MessageBox.Show("You win 👉😉👉");
-            InitialiseGame();
-        }
-
-
-        private void DisplayWin()
-        {
-
         }
     }
 }

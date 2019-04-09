@@ -55,5 +55,38 @@ namespace LightsOut.Extensions
 
             return lights.Single(l => l.X == x && l.Y == y);
         }
+
+        /// <summary>
+        /// Method for clearing the screen (i.e switching all the <see cref="Light"/>s off)
+        /// </summary>
+        /// <param name="lights">The grid containing the <see cref="Light"/>s</param>
+        /// <returns>The grid</returns>
+        public static void ClearScreen(this List<Light> lights)
+        {
+            lights.EnsureNotNull(nameof(lights));
+
+            lights.ForEach(l => l.SwitchOff());
+        }
+
+        public static void DisplayWinScreen(this List<Light> lights)
+        {
+            lights.ClearScreen();
+
+            lights.GetByCoord(0, 0).SwitchOn();
+            lights.GetByCoord(2, 0).SwitchOn();
+            lights.GetByCoord(4, 0).SwitchOn();
+            lights.GetByCoord(0, 2).SwitchOn();
+            lights.GetByCoord(4, 2).SwitchOn();
+            lights.GetByCoord(0, 4).SwitchOn();
+            lights.GetByCoord(2, 4).SwitchOn();
+            lights.GetByCoord(4, 4).SwitchOn();
+
+            lights.GetByCoord(1, 3).UpdateText("Y");
+            lights.GetByCoord(2, 3).UpdateText("O");
+            lights.GetByCoord(3, 3).UpdateText("U");
+            lights.GetByCoord(1, 1).UpdateText("W");
+            lights.GetByCoord(2, 1).UpdateText("I");
+            lights.GetByCoord(3, 1).UpdateText("N");
+        }
     }
 }

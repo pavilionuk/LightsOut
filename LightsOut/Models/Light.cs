@@ -88,6 +88,15 @@ namespace LightsOut.Models
         }
 
         /// <summary>
+        /// Method for updating the text off the <see cref="Light"/> button
+        /// </summary>
+        /// <param name="newText">The text to replace the <see cref="Light"/> button's text</param>
+        public void UpdateText(string newText)
+        {
+            _btnLight.Text = newText;
+        }
+
+        /// <summary>
         /// Gets the x coord position of the light
         /// </summary>
         public int X { get; private set; }

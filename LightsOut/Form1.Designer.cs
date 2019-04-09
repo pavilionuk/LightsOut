@@ -293,6 +293,10 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // tmrWinScreen
+            // 
+            this.tmrWinScreen.Tick += new System.EventHandler(this.tmrWinScreen_Tick);
+            // 
             // frmLightsOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
